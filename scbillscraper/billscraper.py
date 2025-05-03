@@ -60,6 +60,9 @@ def parse_pdf_text(bill):
         "current_status": "No history"  # Default status in case no history is found
     }
 
+    # Skip the first line (which is the date and time)
+    lines = lines[1:] if len(lines) > 0 and re.match(r"\w{3}\s\d{2},\s\d{4}", lines[0]) else lines
+
     for i, line in enumerate(lines):
         if re.match(r"^[SH]\*?\s?\d+", line):  # e.g. "S*0001" or "S 0003"
             data["title_line"] = line.strip()
