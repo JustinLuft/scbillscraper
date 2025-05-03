@@ -8,12 +8,17 @@ from datetime import datetime
 
 # --- PDF Scraping and Text Extraction ---
 def scrape_pdf(bill_number, session):
-    url = f"https://www.scstatehouse.gov/sess{session}/bills/{bill_number}/{bill_number}.pdf"
+    # Updated URL format based on your input
+    url = f"https://www.scstatehouse.gov/billsearch.php?billnumbers={bill_number}&session={session}&summary=B&PRINT=1"
     try:
         print(f"Downloading PDF for Bill {bill_number}...")
         response = requests.get(url, timeout=10)
-        response.raise_for_status()  # Raise an exception if the request fails
-
+        
+        # Check for 404 errors
+        if response.status_code == 404:
+            print(f"Bill {bill_number} does not exist at the given URL.")
+            return None
+        
         # Save the PDF locally
         pdf_filename = f"bill_{bill_number}.pdf"
         with open(pdf_filename, 'wb') as f:
