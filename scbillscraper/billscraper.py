@@ -19,6 +19,32 @@ import pandas as pd
 import re
 from datetime import datetime
 
+def scrape_print_page(bill_number, session):
+    url = f"https://www.scstatehouse.gov/sess{session}/bills/{bill_number}/{bill_number}.pdf"
+    try:
+        print(f"Downloading PDF for Bill {bill_number}...")
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()  # Raise an exception if the request fails
+
+        # Save the PDF locally
+        pdf_filename = f"bill_{bill_number}.pdf"
+        with open(pdf_filename, 'wb') as f:
+            f.write(response.content)
+        print(f"PDF for Bill {bill_number} downloaded successfully.")
+
+        # Extract text from the PDF (use pdfplumber or PyPDF2)
+        with pdfplumber.open(pdf_filename) as pdf:
+            text = ""
+            for page in pdf.pages:
+                text += page.extract_text()
+
+        print(f"Text extracted from Bill {bill_number}.")
+        return {"bill_number": str(bill_number).zfill(4), "session": session, "text": text}
+
+    except Exception as e:
+        print(f"Error downloading or processing PDF for Bill {bill_number}: {e}")
+        return None
+
 def parse_pdf_text(bill):
     lines = bill["text"].splitlines()
     data = {
