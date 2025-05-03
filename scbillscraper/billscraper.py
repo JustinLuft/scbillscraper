@@ -7,9 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1Y0Bu7FTNZwtDF2NWIycluil8A73JoWrQ
 """
 
-!pip install beautifulsoup4 requests
-!pip install pdfplumber
-
 import requests
 from bs4 import BeautifulSoup
 import re
