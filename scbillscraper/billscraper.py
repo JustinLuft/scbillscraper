@@ -8,7 +8,6 @@ from datetime import datetime
 
 # --- PDF Scraping and Text Extraction ---
 def scrape_pdf(bill_number, session):
-    # Updated URL format based on your input
     url = f"https://www.scstatehouse.gov/billsearch.php?billnumbers={bill_number}&session={session}&summary=B&PRINT=1"
     try:
         print(f"Downloading PDF for Bill {bill_number}...")
@@ -57,7 +56,8 @@ def parse_pdf_text(bill):
         "summary_title": None,
         "summary_text": "",
         "history": [],
-        "bill_url": bill.get("url", "")  # Add the URL to the data
+        "bill_url": bill.get("url", ""),  # Add the URL to the data
+        "current_status": "No history"  # Default status in case no history is found
     }
 
     for i, line in enumerate(lines):
@@ -90,8 +90,6 @@ def parse_pdf_text(bill):
     if data["history"]:
         latest = max(data["history"], key=lambda x: x["date_obj"] or datetime.min)
         data["current_status"] = f"{latest['date']} {latest['chamber']} {latest['action']}"
-    else:
-        data["current_status"] = "No history"
 
     return data
 
@@ -125,12 +123,21 @@ def check_fiscal_impact(session, bill_number):
 # --- Save Parsed CSV Only ---
 flat_data = []
 for bill in results:
+    # Parse the PDF text to get the structured data
+    parsed_data = parse_pdf_text(bill)
+
+    # Get fiscal impact for each bill
+    fiscal_impact = check_fiscal_impact(session, bill["bill_number"])
+
+    # Add parsed data and fiscal impact to the flat_data list
     flat_data.append({
         "bill_number": bill["bill_number"],
         "session": bill["session"],
         "format": bill.get("format", "unknown"),
         "text": bill.get("text", "")[:500],  # Preview only the first 500 characters of text
-        "bill_url": bill.get("url", "")  # Add the bill's URL
+        "bill_url": bill.get("url", ""),  # Add the bill's URL
+        "fiscal_impact": fiscal_impact,  # Add the fiscal impact
+        "current_status": parsed_data["current_status"]  # Add the current status
     })
 
 df = pd.DataFrame(flat_data)
