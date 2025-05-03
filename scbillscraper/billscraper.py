@@ -60,20 +60,20 @@ def parse_pdf_text(bill):
         "current_status": "No history"  # Default status in case no history is found
     }
 
-    # Skip the first line (which is the date and time)
-    lines = lines[1:] if len(lines) > 0 and re.match(r"\w{3}\s\d{2},\s\d{4}", lines[0]) else lines
-
+    # Initialize placeholders
+    bill_name = ""
+    bill_summary = []
+    
+    # Parse the lines
     for i, line in enumerate(lines):
+        # Extract the bill name (after the number)
         if re.match(r"^[SH]\*?\s?\d+", line):  # e.g. "S*0001" or "S 0003"
-            data["title_line"] = line.strip()
-        elif line.startswith("Summary:"):
-            data["summary_title"] = line.replace("Summary:", "").strip()
-            summary_lines = []
-            j = i + 1
-            while j < len(lines) and not re.match(r"\d{2}/\d{2}/\d{2}", lines[j]):
-                summary_lines.append(lines[j].strip())
-                j += 1
-            data["summary_text"] = " ".join(summary_lines)
+            bill_name = line.strip()  # Get the bill name part
+            
+        # Extract the summary (uppercase text, 5 or more caps in a row)
+        if re.match(r"([A-Z ]{5,})", line.strip()):  # Detect uppercase blocks
+            bill_summary.append(line.strip())  # Append the uppercase block to the summary
+    
         elif re.match(r"\d{2}/\d{2}/\d{2}", line.strip()):
             parts = line.strip().split(None, 2)
             if len(parts) == 3:
@@ -88,6 +88,10 @@ def parse_pdf_text(bill):
                     "chamber": chamber,
                     "action": action
                 })
+
+    # Assign the parsed bill name and summary text
+    data["title_line"] = bill_name
+    data["summary_text"] = " ".join(bill_summary)
 
     # Find current status (latest date)
     if data["history"]:
@@ -136,10 +140,13 @@ for bill in results:
     flat_data.append({
         "bill_number": bill["bill_number"],
         "session": bill["session"],
+        "format": bill.get("format", "unknown"),
         "text": bill.get("text", "")[:500],  # Preview only the first 500 characters of text
         "bill_url": bill.get("url", ""),  # Add the bill's URL
         "fiscal_impact": fiscal_impact,  # Add the fiscal impact
-        "current_status": parsed_data["current_status"]  # Add the current status
+        "current_status": parsed_data["current_status"],  # Add the current status
+        "bill_name": parsed_data["title_line"],  # Bill name (e.g. "S*0002 (Rat #0010) General Bill")
+        "bill_summary": parsed_data["summary_text"]  # Bill summary (uppercase text)
     })
 
 df = pd.DataFrame(flat_data)
