@@ -19,7 +19,8 @@ jobs:
           python-version: '3.10'
 
       - name: Install dependencies
-        run: pip install requests pandas beautifulsoup4
+        run:  pip install requests pandas beautifulsoup4 pdfplumber  # Add pdfplumber for PDF scraping
+
 
 
       - name: Run scraper
