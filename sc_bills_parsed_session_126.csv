@@ -1,20 +1,20 @@
-bill_number,session,format,text,bill_url
-0001,126,unknown,"May 03, 2025, 04:09:01 pm
+bill_number,session,format,text,bill_url,fiscal_impact,current_status
+0001,126,unknown,"May 03, 2025, 04:11:46 pm
 Session 126 - (2025-2026)
 S*0001 Resolution, By Massey
 Summary: Senate Rules of Procedure
 A SENATE RESOLUTION TO ADOPT THE RULES OF PROCEDURE FOR THE SENATE AS PROVIDED IN ARTICLE III,
 SECTION 12 OF THE CONSTITUTION OF SOUTH CAROLINA, 1895.
 12/04/24 Senate Introduced and adopted (Senate Journal-page 8)
-Page 1 of 1",https://www.scstatehouse.gov/billsearch.php?billnumbers=1&session=126&summary=B&PRINT=1
-0002,126,unknown,"May 03, 2025, 04:09:03 pm
+Page 1 of 1",https://www.scstatehouse.gov/billsearch.php?billnumbers=1&session=126&summary=B&PRINT=1,no,12/04/24 Senate Introduced and adopted (Senate Journal-page 8)
+0002,126,unknown,"May 03, 2025, 04:11:47 pm
 Session 126 - (2025-2026)
 S*0002 (Rat #0010) General Bill, By Peeler, Alexander, Davis, Devine, Garrett, Turner, Jackson and Sutton
 Summary: Department of Behavioral Health and Developmental Disabilities
 AN ACT TO AMEND THE SOUTH CAROLINA CODE OF LAWS BY ADDING CHAPTER 12 TO TITLE 44 SO AS TO
 ESTABLISH THE DEPARTMENT OF BEHAVIORAL HEALTH AND DEVELOPMENTAL DISABILITIES COMPRISED OF THE
-OFFICE OF INTELLECTUAL AND DEVELOPMENTAL DISABILITIES, THE OFFICE OF MENTAL HEALTH, AN",https://www.scstatehouse.gov/billsearch.php?billnumbers=2&session=126&summary=B&PRINT=1
-0003,126,unknown,"May 03, 2025, 04:09:05 pm
+OFFICE OF INTELLECTUAL AND DEVELOPMENTAL DISABILITIES, THE OFFICE OF MENTAL HEALTH, AN",https://www.scstatehouse.gov/billsearch.php?billnumbers=2&session=126&summary=B&PRINT=1,yes,04/28/25 Signed By Governor
+0003,126,unknown,"May 03, 2025, 04:11:49 pm
 Session 126 - (2025-2026)
 S 0003 General Bill, By Jackson
 Similar (H 3398)
@@ -23,8 +23,8 @@ A BILL TO AMEND THE SOUTH CAROLINA CODE OF LAWS BY AMENDING SECTION 7-5-120, REL
 PERSONS DISQUALIFIED FROM REGISTERING OR VOTING, SO AS TO PROVIDE THAT DISQUALIFICATION DUE TO A
 FELONY CONVICTION IS REMOVED, AND THE PERSON'S VOTING RIGHTS AUTOMATICALLY RESTORED, UPON
 RELEASE FROM PRISON; BY AMENDING SECTION 7-5-170, RELATING TO INFORMATION CONTAINED ON VOTER
-R",https://www.scstatehouse.gov/billsearch.php?billnumbers=3&session=126&summary=B&PRINT=1
-0004,126,unknown,"May 03, 2025, 04:09:07 pm
+R",https://www.scstatehouse.gov/billsearch.php?billnumbers=3&session=126&summary=B&PRINT=1,no,01/14/25 Senate Introduced and read first time (Senate Journal-page 26)
+0004,126,unknown,"May 03, 2025, 04:11:50 pm
 Session 126 - (2025-2026)
 S 0004 General Bill, By Jackson
 Summary: Local Government Planning
@@ -32,4 +32,4 @@ A BILL TO AMEND THE SOUTH CAROLINA CODE OF LAWS BY ADDING SECTION 6-39-10 SO AS 
 CERTAIN ADMINISTRATIVE AND PERMITTING COSTS AND BARRIERS TO THE CONSTRUCTION OF HOUSING WHILE
 MAINTAINING SAFETY, PUBLIC HEALTH, AND THE GENERAL WELFARE WITH RESPECT TO CONSTRUCTION AND
 OCCUPANCY; BY AMENDING SECTION 5-25-120, RELATING TO INSPECTORS OF BUILDINGS, SO AS TO ALLOW A
-BUILDER TO",https://www.scstatehouse.gov/billsearch.php?billnumbers=4&session=126&summary=B&PRINT=1
+BUILDER TO",https://www.scstatehouse.gov/billsearch.php?billnumbers=4&session=126&summary=B&PRINT=1,yes,01/14/25 Senate Introduced and read first time (Senate Journal-page 27)
