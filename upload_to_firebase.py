@@ -31,8 +31,6 @@ for _, row in df.iterrows():
     bill_ref.set({
         'bill_number': row['bill_number'],
         'session': row['session'],
-        'format': row['format'],
-        'text': row['text'],
         'bill_url': row['bill_url'],
         'fiscal_impact': row['fiscal_impact'],
         'current_status': row['current_status'],
