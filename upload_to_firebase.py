@@ -25,7 +25,7 @@ df = pd.read_csv('sc_bills_parsed_session_126.csv')
 # Iterate through each row and upload the data to Firebase
 for _, row in df.iterrows():
     # Set the document ID to bill_number (this will ensure each bill has a unique document)
-    bill_ref = db.collection(u'bills').document(row['bill_number'])
+    bill_ref = db.collection(u'bills').document(str(row['bill_number']))  # Convert bill_number to string
 
     # Set the fields for the document
     bill_ref.set({
