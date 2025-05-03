@@ -1,5 +1,5 @@
 bill_session,bill_name,bill_number,bill_summary,bill_status,hasFiscal
-126,S*0001,0001,N/A,12/04/24 Senate Introduced and adopted,no
-126,S*0002,0002,N/A,12/04/24 Senate Introduced and adopted,yes
-126,S*0003,0003,N/A,12/04/24 Senate Introduced and adopted,no
-126,S*0004,0004,N/A,12/04/24 Senate Introduced and adopted,yes
+126,S*0001,0001,EXAMPLE SUMMARY FOR BILL 1,12/04/24 Senate Introduced and adopted,no
+126,S*0002,0002,EXAMPLE SUMMARY FOR BILL 2,12/04/24 Senate Introduced and adopted,yes
+126,S*0003,0003,EXAMPLE SUMMARY FOR BILL 3,12/04/24 Senate Introduced and adopted,no
+126,S*0004,0004,EXAMPLE SUMMARY FOR BILL 4,12/04/24 Senate Introduced and adopted,yes

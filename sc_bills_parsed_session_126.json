@@ -3,7 +3,7 @@
     "bill_session": 126,
     "bill_name": "S*0001",
     "bill_number": "0001",
-    "bill_summary": "N/A",
+    "bill_summary": "EXAMPLE SUMMARY FOR BILL 1",
     "bill_status": "12/04/24 Senate Introduced and adopted",
     "hasFiscal": "no"
   },
@@ -11,7 +11,7 @@
     "bill_session": 126,
     "bill_name": "S*0002",
     "bill_number": "0002",
-    "bill_summary": "N/A",
+    "bill_summary": "EXAMPLE SUMMARY FOR BILL 2",
     "bill_status": "12/04/24 Senate Introduced and adopted",
     "hasFiscal": "yes"
   },
@@ -19,7 +19,7 @@
     "bill_session": 126,
     "bill_name": "S*0003",
     "bill_number": "0003",
-    "bill_summary": "N/A",
+    "bill_summary": "EXAMPLE SUMMARY FOR BILL 3",
     "bill_status": "12/04/24 Senate Introduced and adopted",
     "hasFiscal": "no"
   },
@@ -27,7 +27,7 @@
     "bill_session": 126,
     "bill_name": "S*0004",
     "bill_number": "0004",
-    "bill_summary": "N/A",
+    "bill_summary": "EXAMPLE SUMMARY FOR BILL 4",
     "bill_status": "12/04/24 Senate Introduced and adopted",
     "hasFiscal": "yes"
   }
