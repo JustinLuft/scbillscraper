@@ -32,7 +32,9 @@ jobs:
           git config user.email "github-actions@github.com"
           git add *.json *.csv || true
           git commit -m "Update scraped data" || echo "No changes to commit"
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
           git push origin HEAD
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
