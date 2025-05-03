@@ -104,7 +104,7 @@ def parse_pdf_text(bill):
 session = 126
 results = []
 
-for i in range(1, 5):  # Modify this range based on the number of bills you want to scrape
+for i in range(1, 5000):  # Modify this range based on the number of bills you want to scrape
     print(f"Scraping bill {i}...")
     result = scrape_pdf(i, session)
 
