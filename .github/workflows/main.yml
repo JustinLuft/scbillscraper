@@ -22,7 +22,8 @@ jobs:
         run: pip install requests pandas
 
       - name: Run scraper
-        run: python billscraper.py
+        run: python scbillscraper/billscraper.py
+
 
       - name: Commit results
         run: |
