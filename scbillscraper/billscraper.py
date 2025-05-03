@@ -15,7 +15,6 @@ import time
 
 import pandas as pd
 import re
-from google.colab import files
 from datetime import datetime
 
 def parse_pdf_text(bill):
