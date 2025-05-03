@@ -136,7 +136,6 @@ for bill in results:
     flat_data.append({
         "bill_number": bill["bill_number"],
         "session": bill["session"],
-        "format": bill.get("format", "unknown"),
         "text": bill.get("text", "")[:500],  # Preview only the first 500 characters of text
         "bill_url": bill.get("url", ""),  # Add the bill's URL
         "fiscal_impact": fiscal_impact,  # Add the fiscal impact
