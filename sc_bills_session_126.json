@@ -1,0 +1,26 @@
+[
+  {
+    "bill_number": "0001",
+    "session": 126,
+    "format": "PDF",
+    "text": "S*0001\nSummary:\nEXAMPLE SUMMARY FOR BILL 1\n12/04/24 Senate Introduced and adopted"
+  },
+  {
+    "bill_number": "0002",
+    "session": 126,
+    "format": "PDF",
+    "text": "S*0002\nSummary:\nEXAMPLE SUMMARY FOR BILL 2\n12/04/24 Senate Introduced and adopted"
+  },
+  {
+    "bill_number": "0003",
+    "session": 126,
+    "format": "PDF",
+    "text": "S*0003\nSummary:\nEXAMPLE SUMMARY FOR BILL 3\n12/04/24 Senate Introduced and adopted"
+  },
+  {
+    "bill_number": "0004",
+    "session": 126,
+    "format": "PDF",
+    "text": "S*0004\nSummary:\nEXAMPLE SUMMARY FOR BILL 4\n12/04/24 Senate Introduced and adopted"
+  }
+]
