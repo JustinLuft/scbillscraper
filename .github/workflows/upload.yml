@@ -1,0 +1,38 @@
+name: Upload CSV to Firebase
+
+on:
+  workflow_dispatch:  # Allows you to manually trigger this workflow
+  schedule:
+    - cron: '0 12 * * *'  # Runs the action daily at 12:00 PM UTC
+
+jobs:
+  upload-to-firebase:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: |
+          pip install firebase-admin pandas requests
+
+      # Step 4: Download CSV from GitHub repository
+      - name: Download CSV from GitHub
+        run: |
+          curl -o sc_bills_parsed_session_126.csv https://raw.githubusercontent.com/${{ github.repository }}/main/sc_bills_parsed_session_126.csv
+
+      # Step 5: Upload CSV data to Firebase
+      - name: Upload CSV to Firebase
+        run: |
+          python upload_to_firebase.py
+        env:
+          FIREBASE_CREDENTIALS: ${{ secrets.FIREBASE_CREDENTIALS }}
