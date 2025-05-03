@@ -65,6 +65,7 @@ def parse_pdf_text(bill):
     return data
 
 # Parse all PDF bills
+results = []
 structured_data = [parse_pdf_text(b) for b in results if b["format"] == "PDF"]
 
 # Expand for CSV
@@ -90,7 +91,6 @@ for bill in structured_data:
         rows.append(base)
 
 session = 126
-results = []
 
 for i in range(1, 5):  # or whatever your upper limit is
     print(f"Scraping bill {i}...")
