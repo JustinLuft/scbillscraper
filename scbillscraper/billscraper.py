@@ -6,10 +6,8 @@ import time
 import pandas as pd
 from datetime import datetime
 
-# --- You MUST define this function ---
 def scrape_print_page(bill_number, session):
-    # TODO: Replace this with your real scraping logic.
-    # Here's a dummy response for demonstration.
+    # Simulated dummy PDF text for demo purposes
     return {
         "bill_number": str(bill_number).zfill(4),
         "session": session,
@@ -22,18 +20,18 @@ def parse_pdf_text(bill):
     data = {
         "bill_number": bill["bill_number"],
         "session": bill["session"],
-        "format": "PDF",
+        "format": bill["format"],
         "title_line": None,
         "summary_title": None,
         "summary_text": "",
-        "history": []
+        "history": [],
+        "current_status": "No history"
     }
 
     for i, line in enumerate(lines):
         if re.match(r"^[SH]\*?\s?\d+", line):
             data["title_line"] = line.strip()
         elif line.startswith("Summary:"):
-            data["summary_title"] = line.replace("Summary:", "").strip()
             summary_lines = []
             j = i + 1
             while j < len(lines) and not re.match(r"\d{2}/\d{2}/\d{2}", lines[j]):
@@ -58,8 +56,6 @@ def parse_pdf_text(bill):
     if data["history"]:
         latest = max(data["history"], key=lambda x: x["date_obj"] or datetime.min)
         data["current_status"] = f"{latest['date']} {latest['chamber']} {latest['action']}"
-    else:
-        data["current_status"] = "No history"
 
     return data
 
@@ -74,7 +70,7 @@ def check_fiscal_impact(session, bill_number):
         print(f"Error checking fiscal impact for bill {bill_number}: {e}")
         return "unknown"
 
-# --- Start scraping ---
+# --- Scrape bills ---
 session = 126
 results = []
 
@@ -87,64 +83,38 @@ for i in range(1, 5):
     results.append(result)
     time.sleep(1)
 
-# --- Save raw data ---
+# --- Save raw scraped data ---
 with open(f"sc_bills_session_{session}.json", "w", encoding="utf-8") as f:
     json.dump(results, f, ensure_ascii=False, indent=2)
 
-# --- Flatten preview CSV ---
+# --- Flat CSV preview ---
 flat_data = [{
     "bill_number": bill["bill_number"],
     "session": bill["session"],
     "format": bill.get("format", "unknown"),
     "text": bill.get("text", "")[:500]
 } for bill in results]
-
 pd.DataFrame(flat_data).to_csv(f"sc_bills_session_{session}.csv", index=False)
 
-# --- Parse and structure data ---
+# --- Parse structured fields ---
 parsed_bills = []
 
-for item in results:
-    text = item.get('text', '')
-    lines = text.split('\n')
-    session = item.get('session', 'N/A')
-    bill_name_match = re.search(r'(S\*?\d{4}|H\*?\d{4})', text)
-    bill_name = bill_name_match.group(1) if bill_name_match else 'N/A'
-    bill_number = re.sub(r'\D', '', bill_name) if bill_name != 'N/A' else item.get('bill_number', 'N/A')
-
-    upper_block = []
-    summary_start = False
-    for line in lines:
-        if line.startswith("Summary:"):
-            summary_start = True
-            continue
-        if summary_start and line.strip().isupper():
-            upper_block.append(line.strip())
-        else:
-            break
-    bill_summary = ' '.join(upper_block).strip() if upper_block else 'N/A'
-
-    status_lines = []
-    found_summary = False
-    for line in lines:
-        if line.startswith("Summary:"):
-            found_summary = True
-            continue
-        if found_summary and (line.strip().islower() or re.match(r'^\d{2}/\d{2}/\d{2}', line.strip())):
-            status_lines.append(line.strip())
-
+for bill in results:
+    parsed = parse_pdf_text(bill)
+    bill_name = parsed["title_line"] or f"S*{bill['bill_number']}"
+    bill_number = re.sub(r'\D', '', bill_name)
     has_fiscal = check_fiscal_impact(session, bill_number)
 
     parsed_bills.append({
         "bill_session": session,
         "bill_name": bill_name,
         "bill_number": bill_number,
-        "bill_summary": bill_summary,
-        "bill_status": status_lines[-1] if status_lines else 'N/A',
+        "bill_summary": parsed["summary_text"] or "N/A",
+        "bill_status": parsed["current_status"],
         "hasFiscal": has_fiscal
     })
 
-# --- Save structured output ---
+# --- Save structured data ---
 with open(f"sc_bills_parsed_session_{session}.json", "w", encoding="utf-8") as f:
     json.dump(parsed_bills, f, ensure_ascii=False, indent=2)
 
