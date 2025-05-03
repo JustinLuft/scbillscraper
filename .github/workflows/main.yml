@@ -19,23 +19,18 @@ jobs:
           python-version: '3.10'
 
       - name: Install dependencies
-        run:  pip install requests pandas beautifulsoup4 pdfplumber  # Add pdfplumber for PDF scraping
-
-
+        run: pip install requests pandas beautifulsoup4 pdfplumber  # Add pdfplumber for PDF scraping
 
       - name: Run scraper
         run: python scbillscraper/billscraper.py
-
 
       - name: Commit results
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add *.json *.csv || true
+          git add sc_bills_parsed_session_126.csv || true  # Add only the CSV file
           git commit -m "Update scraped data" || echo "No changes to commit"
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
           git push origin HEAD
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
