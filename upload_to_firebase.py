@@ -2,9 +2,18 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 import pandas as pd
 import os
+import tempfile
 
-# Authenticate with Firebase using the service account from GitHub secrets
-cred = credentials.Certificate(os.environ['FIREBASE_CREDENTIALS'])
+# Create a temporary file for Firebase credentials
+firebase_credentials = os.environ['FIREBASE_CREDENTIALS']
+
+# Write the credentials to a temporary file
+with tempfile.NamedTemporaryFile(delete=False, mode='w', newline='', encoding='utf-8') as temp_file:
+    temp_file.write(firebase_credentials)
+    temp_file_path = temp_file.name
+
+# Initialize Firebase using the temporary credentials file
+cred = credentials.Certificate(temp_file_path)
 firebase_admin.initialize_app(cred)
 
 # Initialize Firestore
