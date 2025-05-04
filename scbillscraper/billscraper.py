@@ -105,7 +105,7 @@ session = 126
 results = []
 null_count = 0  # Track consecutive nulls
 
-for i in range(1, 50000):
+for i in range(1, 5000):
     print(f"Scraping bill {i}...")
     result = scrape_pdf(i, session)
 
@@ -116,8 +116,8 @@ for i in range(1, 50000):
     ):
         null_count += 1
         print(f"Invalid or missing bill {i} (consecutive nulls: {null_count})")
-        if null_count >= 10:
-            print(f"Stopping after 10 consecutive invalid bills (last was {i}).")
+        if null_count >= 2000:
+            print(f"Stopping after 2k consecutive invalid bills (last was {i}).")
             break
     else:
         null_count = 0
