@@ -110,8 +110,10 @@ for i in range(1, 50000):  # Upper bound can be set high
     result = scrape_pdf(i, session)
 
     if (
-    result is None or not result.get("text") or  "INVALID BILL" in result.get("text", "")
-    ):
+    result is None or
+    not result.get("text") or
+    "INVALID BILL" in result.get("text", "")
+):
     null_count += 1
     print(f"Invalid or missing bill {i} (consecutive nulls: {null_count})")
     if null_count >= 10:
@@ -120,6 +122,7 @@ for i in range(1, 50000):  # Upper bound can be set high
 else:
     null_count = 0  # Reset because a valid, non-empty bill was found
     results.append(result)
+
 
 
     time.sleep(1)  # Be polite to the server
