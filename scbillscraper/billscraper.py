@@ -103,26 +103,37 @@ def parse_pdf_text(bill):
 # --- Scrape Each Bill ---
 session = 126
 results = []
-null_count = 0  # Track consecutive nulls
+null_count = 0
+jumped = False  # Has the script jumped to 3000 yet?
 
-for i in range(1, 5000):
+i = 1
+while i < 5000:
     print(f"Scraping bill {i}...")
     result = scrape_pdf(i, session)
 
     if (
         result is None or
         not result.get("text") or
-        "INVALID BILL" in result.get("text", "")
+        "INVALID BILL" in result.get("text", "").upper()
     ):
         null_count += 1
         print(f"Invalid or missing bill {i} (consecutive nulls: {null_count})")
-        if null_count >= 2000:
-            print(f"Stopping after 2k consecutive invalid bills (last was {i}).")
-            break
+
+        if null_count >= 10:
+            if not jumped:
+                print("10 consecutive nulls detected. Jumping to bill 3000...")
+                i = 3000
+                null_count = 0
+                jumped = True
+                continue
+            else:
+                print(f"10 more consecutive nulls detected after jump. Stopping at bill {i}.")
+                break
     else:
         null_count = 0
         results.append(result)
 
+    i += 1
     time.sleep(1)
 
 
