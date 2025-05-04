@@ -105,27 +105,26 @@ session = 126
 results = []
 null_count = 0  # Track consecutive nulls
 
-for i in range(1, 50000):  # Upper bound can be set high
+for i in range(1, 50000):
     print(f"Scraping bill {i}...")
     result = scrape_pdf(i, session)
 
     if (
-    result is None or
-    not result.get("text") or
-    "INVALID BILL" in result.get("text", "")
-):
-    null_count += 1
-    print(f"Invalid or missing bill {i} (consecutive nulls: {null_count})")
-    if null_count >= 10:
-        print(f"Stopping after 10 consecutive invalid bills (last was {i}).")
-        break
-else:
-    null_count = 0  # Reset because a valid, non-empty bill was found
-    results.append(result)
+        result is None or
+        not result.get("text") or
+        "INVALID BILL" in result.get("text", "")
+    ):
+        null_count += 1
+        print(f"Invalid or missing bill {i} (consecutive nulls: {null_count})")
+        if null_count >= 10:
+            print(f"Stopping after 10 consecutive invalid bills (last was {i}).")
+            break
+    else:
+        null_count = 0
+        results.append(result)
 
+    time.sleep(1)
 
-
-    time.sleep(1)  # Be polite to the server
 
 # --- Fiscal Impact Checker ---
 def check_fiscal_impact(session, bill_number):
