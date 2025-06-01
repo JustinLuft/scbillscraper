@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  body {
+    font-family: var(--font-geist-sans);
+    @apply text-[#333] bg-[#f8f8f8] dark:bg-[#1a1a1a];
+  }
+
+  .container {
+    @apply px-4 md:px-6 lg:px-8 py-10;
+  }
+  html {
+    scrollbar-gutter: stable;
+  }
+
+  .dark .card {
+    background-color: #262626;
+  }
+
+  .card {
+    background-color: #fff;
+  }
+  :root {
+    --background: 0 0% 100%; /* White */
+    --foreground: 0 0% 3.9%; /* Near Black */
+
+    --card: 0 0% 100%; /* White */
+    --card-foreground: 0 0% 3.9%; /* Near Black */
+
+    --popover: 0 0% 100%; /* White */
+    --popover-foreground: 0 0% 3.9%; /* Near Black */
+
+    --primary: 0 100% 25%; /* Maroon #800000 */
+    --primary-foreground: 0 0% 98%; /* Near White */
+
+    --secondary: 0 0% 94.1%; /* Light Gray #F0F0F0 */
+    --secondary-foreground: 0 0% 9%; /* Dark Gray */
+
+    --muted: 0 0% 94.1%; /* Light Gray #F0F0F0 */
+    --muted-foreground: 0 0% 45.1%; /* Medium Gray */
+
+    --accent: 0 0% 0%; /* Black #000000 - used for interactive elements */
+    --accent-foreground: 0 0% 98%; /* Near White */
+
+    --destructive: 0 84.2% 60.2%; /* Default Red */
+    --destructive-foreground: 0 0% 98%; /* Near White */
+
+    --border: 0 0% 85%; /* Slightly darker gray for borders */
+    --input: 0 0% 89.8%; /* Default input background */
+    --ring: 0 100% 25%; /* Maroon for focus rings */
+
+    --chart-1: 0 100% 25%; /* Maroon */
+    --chart-2: 0 70% 35%; /* Darker Maroon */
+    --chart-3: 0 50% 45%; /* Lighter Maroon */
+    --chart-4: 0 0% 60%; /* Gray */
+    --chart-5: 0 0% 40%; /* Darker Gray */
+
+    --radius: 0.5rem;
+
+    /* Keep sidebar theme consistent for now, can be customized later if needed */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 0 100% 25%; /* Maroon */
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 0 0% 94.1%; /* Light Gray */
+    --sidebar-accent-foreground: 0 0% 9%;
+    --sidebar-border: 0 0% 85%;
+    --sidebar-ring: 0 100% 25%;
+  }
+
+  .dark {
+    /* Define dark mode colors based on the light theme */
+    --background: 0 0% 3.9%; /* Near Black */
+    --foreground: 0 0% 98%; /* Near White */
+
+    --card: 0 0% 15%; /* Dark Gray */
+    --card-foreground: 0 0% 98%; /* Near White */
+
+    --popover: 0 0% 3.9%; /* Near Black */
+    --popover-foreground: 0 0% 100%; /* Near White */
+
+    --primary: 0 100% 35%; /* Brighter Maroon for dark mode */
+    --primary-foreground: 0 0% 98%; /* Near White */
+
+    --secondary: 0 0% 14.9%; /* Darker Gray */
+    --secondary-foreground: 0 0% 98%; /* Near White */
+
+    --muted: 0 0% 14.9%; /* Darker Gray */
+    --muted-foreground: 0 0% 63.9%; /* Lighter Gray */
+
+    --accent: 0 0% 98%; /* White/Near White for accent in dark */
+    --accent-foreground: 0 0% 3.9%; /* Near Black */
+
+    --destructive: 0 72.2% 50.6%; /* Brighter Red */
+    --destructive-foreground: 0 0% 98%; /* Near White */
+
+    --border: 0 0% 14.9%; /* Darker Gray border */
+    --input: 0 0% 14.9%; /* Darker Gray input */
+    --ring: 0 100% 35%; /* Brighter Maroon ring */
+
+    --chart-1: 0 100% 35%; /* Brighter Maroon */
+    --chart-2: 0 70% 45%;
+    --chart-3: 0 50% 55%;
+    --chart-4: 0 0% 70%;
+    --chart-5: 0 0% 50%;
+
+    --sidebar-background: 0 0% 10%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 0 100% 35%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 0 0% 14.9%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 14.9%;
+    --sidebar-ring: 0 100% 35%;
+  }
+}
+
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.dark .card-shadow {
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #666; /* Dark Gray */
+  border-radius: 4px;
+}
+
+/* Custom green color for 'No' fiscal impact (as text-green-600 was used) */
+.text-positive {
+  color: hsl(145, 63%, 42%); /* Equivalent to Tailwind's green-600 */
+}
+
+.dark .text-positive {
+  color: hsl(145, 58%, 52%); /* Brighter green for dark mode */
+}
+
+/* Dark scrollbar */
+.dark ::-webkit-scrollbar-thumb {
+  background-color: #fff;
+}
+
+.card-transition {
+  transition: all 0.2s ease-in-out;
+}
+
