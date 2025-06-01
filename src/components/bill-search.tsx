@@ -46,13 +46,7 @@ function useDebounce<T>(value: T, delay: number): T {
 }
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAZKKgAToBo50ehGotcqOFbabJ6scmW4-s",
-  authDomain: "scbills-e1545.firebaseapp.com",
-  projectId: "scbills-e1545",
-  storageBucket: "scbills-e1545.firebasestorage.app",
-  messagingSenderId: "459923968272",
-  appId: "1:459923968272:web:b7a72a6162be3e7898d595",
-  measurementId: "G-6L971HVB53"
+ #REMOVED FOR DEMO CODE
 };
 
 const app = initializeApp(firebaseConfig);
