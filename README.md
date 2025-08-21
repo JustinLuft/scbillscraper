@@ -18,11 +18,6 @@ scbillscraper-main/
 │   └── billscraper.py           # Python scraper
 ├── upload_to_firebase.py        # Script to upload CSV data to Firebase
 ├── sc_bills_parsed_session_126.csv # Example parsed data
-├── src/
-│   ├── ai/                      # AI helpers (TypeScript)
-│   ├── app/                     # Next.js app (pages, layout, global styles)
-│   ├── components/              # React components (bill search + UI elements)
-│   └── styles/                  # Styling (Tailwind)
 ├── .github/workflows/           # GitHub Actions CI/CD
 │   ├── main.yml
 │   └── upload.yml
